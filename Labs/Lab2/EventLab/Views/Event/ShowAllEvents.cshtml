@@ -1,0 +1,31 @@
+﻿@model List<EventLab.Models.EventModel>
+
+@{
+    ViewBag.Title = "ShowAllEvents";
+}
+
+<h2>ShowAllEvents</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateEvent")
+</p>
+<table class="table">
+
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditEvent", new { id = item.ID }) |
+                @Html.ActionLink("Details", "DetailsEvent", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "DeleteEvent", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

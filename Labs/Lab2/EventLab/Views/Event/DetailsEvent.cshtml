@@ -1,0 +1,33 @@
+﻿@model EventLab.Models.EventModel
+
+@{
+    ViewBag.Title = "DetailsEvent";
+}
+
+<h2>Details for event</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditEvent", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "ShowAllEvents")
+</p>

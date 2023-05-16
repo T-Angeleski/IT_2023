@@ -1,0 +1,19 @@
+﻿@model DoctorsHospitals.Models.PatientDoctor
+@{
+    ViewBag.Title = "Add Patient";
+}
+
+<h2>Add a Patient to doctor @Model.Doctor.Name</h2>
+
+@using (Html.BeginForm("InsertPatientToDoctor", "Doctors", FormMethod.Post)) {
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.PatientID, new SelectList(Model.Patients, "PatientID", "Name"),
+       new { @class = "form-control" })
+        @Html.HiddenFor(m => m.DoctorID)
+    </div>
+
+    <div class="form-group">
+        <button type="submit">Add patient to doctor</button>
+    </div>
+}
+

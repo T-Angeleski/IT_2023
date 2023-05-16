@@ -1,0 +1,17 @@
+﻿@model AudMVC_1.Models.EventModel
+@{
+    ViewBag.Title = "ShowEvents";
+}
+
+<h2>ShowEvents</h2>
+
+<ul>
+    @foreach (var e in Model.Events) {
+        <li>
+            @e.ID, @e.Name, @e.Location
+
+            <button>Edit</button>
+            <button>Delete</button>
+        </li>
+    }
+</ul>
