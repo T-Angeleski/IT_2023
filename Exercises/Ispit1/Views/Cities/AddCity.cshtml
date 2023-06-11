@@ -1,0 +1,14 @@
+﻿@model Ispit1.Models.AddListingToCityModel
+@{
+    ViewBag.Title = "AddCity";
+}
+
+<h2>Add Listing to city @ViewBag.CityName</h2>
+
+@using (Html.BeginForm("AddCity", "Cities")) {
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.listingId, new SelectList(Model.listings, "Id", "Name", new { @class = "form-control" }))
+    </div>
+    @Html.HiddenFor(m => m.CityId)
+    <button type="submit">Save</button>
+}

@@ -1,0 +1,46 @@
+﻿@model Listings.Models.City
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>City</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Add new listing", "AddCity", new { id = Model.Id })
+</p>
+
+<p> Listings for city @Model.Name</p>
+<ul>
+    @foreach (var l in Model.apartments) {
+        if (l.IsAvailable) {
+            <li>
+                <a href="/Listings/Details/@l.Id">@l.Name</a>
+            </li>
+        }
+    }
+</ul>
