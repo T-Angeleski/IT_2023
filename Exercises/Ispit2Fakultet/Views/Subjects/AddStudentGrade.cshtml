@@ -1,0 +1,19 @@
+﻿@model Ispit2Fakultet.Models.StudentSubjectGrade
+
+@{
+    ViewBag.Title = "AddStudentGrade";
+}
+
+<h2>Add Student and grade to subject</h2>
+
+@using (Html.BeginForm("AddStudentGrade", "Subjects")) {
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.studentID, new SelectList(ViewBag.students, "Id", "StudentName"), new {@class = "form-control"})
+        @Html.TextBoxFor(m => m.Grade)
+        @Html.HiddenFor(m => m.subjectID)  
+        @Html.HiddenFor(m => m.Name)
+
+        <button type="submit">Save</button>
+    </div>
+}
+

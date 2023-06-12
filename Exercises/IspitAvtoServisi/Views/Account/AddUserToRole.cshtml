@@ -1,0 +1,14 @@
+﻿@model IspitAvtoServisi.Models.AddRoleToUserModel
+@{
+    ViewBag.Title = "AddUserToRole";
+}
+
+<h2>Add User To Role</h2>
+
+@using (Html.BeginForm("AddUserToRole", "Account")) {
+    @Html.LabelFor(m => m.email)
+    @Html.TextBoxFor(m => m.email)
+
+    @Html.DropDownListFor(m => m.selectedRole, new SelectList(Model.roles))
+    <button type="submit">Save</button>
+}
