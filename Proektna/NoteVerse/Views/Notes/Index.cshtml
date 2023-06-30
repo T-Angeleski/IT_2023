@@ -1,0 +1,28 @@
+﻿@model IEnumerable<NoteVerse.Models.Note>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="container">
+    @foreach (var note in Model) {
+        <div class="card" style="width:17rem; display:inline-block; margin:20px;">
+            <div class="card-body">
+                <h5 class="card-title">@note.title</h5>
+                <p class="card-text">@note.content</p>
+                <span class="card-text">
+                    @note.createdAt.DayOfWeek, @note.createdAt.Hour:@note.createdAt.Minute |
+                    @Html.ActionLink("Edit", "Edit", new { id = note.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = note.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = note.Id })
+                </span>
+            </div>
+        </div>
+    }
+</div>
