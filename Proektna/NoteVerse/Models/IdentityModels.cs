@@ -21,6 +21,7 @@ namespace NoteVerse.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Note> Notes { get; set; }
+        public DbSet<TodoNote> ToDos { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

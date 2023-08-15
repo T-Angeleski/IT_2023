@@ -4,8 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using NoteVerse.Models;
 
@@ -17,13 +20,22 @@ namespace NoteVerse.Controllers {
         [Authorize]
         public ActionResult Index() {
 
+            List<Note> notes = new List<Note>();
+            List<TodoNote> todos = new List<TodoNote>();
+
             if (User.IsInRole("Administrator")) {
-                return View(db.Notes.ToList());
+                notes = db.Notes.ToList();
+                todos = db.ToDos.ToList();
             } else {
                 var loggedInUser = User.Identity.GetUserId();
-                var notes = db.Notes.Where(n => n.userId == loggedInUser).ToList();
-                return View(notes);
+                notes = db.Notes.Where(n => n.userId == loggedInUser).ToList();
+                todos = db.ToDos.Where(n => n.userId == loggedInUser).ToList();
             }
+
+            var model = new BothNotesModel() {
+                Notes = notes, TodoNotes = todos
+            };
+            return View(model);
 
         }
 
@@ -53,6 +65,7 @@ namespace NoteVerse.Controllers {
             if (ModelState.IsValid) {
                 var userId = User.Identity.GetUserId();
                 note.userId = userId;
+               
 
                 db.Notes.Add(note);
                 db.SaveChanges();
@@ -62,6 +75,30 @@ namespace NoteVerse.Controllers {
 
             return View(note);
         }
+
+        public ActionResult CreateTodo() {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateTodo(TodoNote note) {
+            note.userId= User.Identity.GetUserId();
+            note.taskComplete = new List<bool>();
+            note.tasks.ForEach(t => note.taskComplete.Add(false));
+
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < note.tasks.Count - 1; i++) {
+                sb.Append(note.tasks[i]).Append(",");
+            }
+            sb.Append(note.tasks[note.tasks.Count - 1]);
+            note.allTasksCS = sb.ToString();
+            db.ToDos.Add(note);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
+
+        
 
         // GET: Notes/Edit/5
         public ActionResult Edit(int? id) {

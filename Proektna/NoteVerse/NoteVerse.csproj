@@ -187,12 +187,34 @@
     <Compile Include="Migrations\202306301229470_addrequired.designer.cs">
       <DependentUpon>202306301229470_addrequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307011031128_todo.cs" />
+    <Compile Include="Migrations\202307011031128_todo.designer.cs">
+      <DependentUpon>202307011031128_todo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307011034552_todo2.cs" />
+    <Compile Include="Migrations\202307011034552_todo2.designer.cs">
+      <DependentUpon>202307011034552_todo2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307021016007_redo-models.cs" />
+    <Compile Include="Migrations\202307021016007_redo-models.designer.cs">
+      <DependentUpon>202307021016007_redo-models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307021026179_intotstr.cs" />
+    <Compile Include="Migrations\202307021026179_intotstr.designer.cs">
+      <DependentUpon>202307021026179_intotstr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307021047129_testnewstring.cs" />
+    <Compile Include="Migrations\202307021047129_testnewstring.designer.cs">
+      <DependentUpon>202307021047129_testnewstring.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddUserToRoleModel.cs" />
+    <Compile Include="Models\BothNotesModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Note.cs" />
+    <Compile Include="Models\TodoNote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -273,6 +295,7 @@
     <Content Include="Views\Notes\Edit.cshtml" />
     <Content Include="Views\Notes\Index.cshtml" />
     <Content Include="Views\Account\AddUserToRole.cshtml" />
+    <Content Include="Views\Notes\CreateTodo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -313,6 +336,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306301229470_addrequired.resx">
       <DependentUpon>202306301229470_addrequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307011031128_todo.resx">
+      <DependentUpon>202307011031128_todo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307011034552_todo2.resx">
+      <DependentUpon>202307011034552_todo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307021016007_redo-models.resx">
+      <DependentUpon>202307021016007_redo-models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307021026179_intotstr.resx">
+      <DependentUpon>202307021026179_intotstr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307021047129_testnewstring.resx">
+      <DependentUpon>202307021047129_testnewstring.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
