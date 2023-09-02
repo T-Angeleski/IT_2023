@@ -8,19 +8,19 @@ namespace NoteVerse.Models {
     public class Note {
         [Key]
         public int Id { get; set; }
-        public string userId { get; set; }
-        [Required(ErrorMessage = "Please enter a title!")]
-        public string title { get; set; }
-        [Required(ErrorMessage = "Note content is required")]
-        public string content { get; set; }
-        public bool isHighPrio;
-        public bool isLowPrio;
+        [Required(ErrorMessage = "Notes must have a title")]
+        [StringLength(100)]
+        public string Title { get; set; }
+        [Required(ErrorMessage = "Please enter content for your note")]
+        public string Content { get; set; }
+        public bool IsCompleted { get; set; } = false;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime Deadline { get; set; }
 
-        public DateTime createdAt { get; set; } = DateTime.Now;
+        public int GroupId { get; set; }
+        public GroupedNotes ParentGroup { get; set; }
 
-
-
+        // User
+        public int UserId { get; set; }
     }
-
-
 }

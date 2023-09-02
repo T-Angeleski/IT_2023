@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{74C072A3-A000-4F5A-A873-32F0103C95E6}</ProjectGuid>
+    <ProjectGuid>{89E0B002-0996-46B9-AFD8-5F2C189DE95A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44392</IISExpressSSLPort>
+    <IISExpressSSLPort>44388</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -120,13 +120,13 @@
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
-      <HintPath>packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <HintPath>packages\Microsoft.AspNet.Identity.Owin.2.2.4\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.4\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -171,50 +171,19 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306301208057_inital.cs" />
-    <Compile Include="Migrations\202306301208057_inital.designer.cs">
-      <DependentUpon>202306301208057_inital.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306301227595_changeID.cs" />
-    <Compile Include="Migrations\202306301227595_changeID.designer.cs">
-      <DependentUpon>202306301227595_changeID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306301229470_addrequired.cs" />
-    <Compile Include="Migrations\202306301229470_addrequired.designer.cs">
-      <DependentUpon>202306301229470_addrequired.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202307011031128_todo.cs" />
-    <Compile Include="Migrations\202307011031128_todo.designer.cs">
-      <DependentUpon>202307011031128_todo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202307011034552_todo2.cs" />
-    <Compile Include="Migrations\202307011034552_todo2.designer.cs">
-      <DependentUpon>202307011034552_todo2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202307021016007_redo-models.cs" />
-    <Compile Include="Migrations\202307021016007_redo-models.designer.cs">
-      <DependentUpon>202307021016007_redo-models.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202307021026179_intotstr.cs" />
-    <Compile Include="Migrations\202307021026179_intotstr.designer.cs">
-      <DependentUpon>202307021026179_intotstr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202307021047129_testnewstring.cs" />
-    <Compile Include="Migrations\202307021047129_testnewstring.designer.cs">
-      <DependentUpon>202307021047129_testnewstring.cs</DependentUpon>
+    <Compile Include="Migrations\202309021304594_init.cs" />
+    <Compile Include="Migrations\202309021304594_init.designer.cs">
+      <DependentUpon>202309021304594_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AddUserToRoleModel.cs" />
-    <Compile Include="Models\BothNotesModel.cs" />
+    <Compile Include="Models\GroupedNotes.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\TodoNote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -289,13 +258,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Notes\Create.cshtml" />
-    <Content Include="Views\Notes\Delete.cshtml" />
-    <Content Include="Views\Notes\Details.cshtml" />
-    <Content Include="Views\Notes\Edit.cshtml" />
-    <Content Include="Views\Notes\Index.cshtml" />
-    <Content Include="Views\Account\AddUserToRole.cshtml" />
-    <Content Include="Views\Notes\CreateTodo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -328,29 +290,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202306301208057_inital.resx">
-      <DependentUpon>202306301208057_inital.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306301227595_changeID.resx">
-      <DependentUpon>202306301227595_changeID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306301229470_addrequired.resx">
-      <DependentUpon>202306301229470_addrequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307011031128_todo.resx">
-      <DependentUpon>202307011031128_todo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307011034552_todo2.resx">
-      <DependentUpon>202307011034552_todo2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307021016007_redo-models.resx">
-      <DependentUpon>202307021016007_redo-models.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307021026179_intotstr.resx">
-      <DependentUpon>202307021026179_intotstr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307021047129_testnewstring.resx">
-      <DependentUpon>202307021047129_testnewstring.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202309021304594_init.resx">
+      <DependentUpon>202309021304594_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -369,9 +310,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>57148</DevelopmentServerPort>
+          <DevelopmentServerPort>49661</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44392/</IISUrl>
+          <IISUrl>https://localhost:44388/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
