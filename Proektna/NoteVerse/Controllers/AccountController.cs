@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NoteVerse.Models;
@@ -50,6 +52,29 @@ namespace NoteVerse.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        // Add user to a role
+        [HttpGet]
+        public ActionResult AddUserToRole() {
+            var model = new AddUserToRoleModel();
+
+            var context = new IdentityDbContext();
+            var users = context.Users.ToList();
+            List<string> emails = new List<string>();
+
+            users.ForEach(u =>  emails.Add(u.Email));
+            model.Emails = emails;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddUserToRole(AddUserToRoleModel model) {
+            var email = model.Email;
+            var user = UserManager.FindByEmail(email);
+
+            UserManager.AddToRole(user.Id, model.SelectedRole);
+            return RedirectToAction("Index", "Notes");
         }
 
         //

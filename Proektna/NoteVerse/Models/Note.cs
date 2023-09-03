@@ -15,12 +15,14 @@ namespace NoteVerse.Models {
         public string Content { get; set; }
         public bool IsCompleted { get; set; } = false;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Deadline { get; set; }
 
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
         public GroupedNotes ParentGroup { get; set; }
 
         // User
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

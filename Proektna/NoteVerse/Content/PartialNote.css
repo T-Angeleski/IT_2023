@@ -1,0 +1,32 @@
+﻿body {
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+.note-card {
+    background-color: #1E1E1E;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+.note-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.note-content {
+    margin-top: 10px;
+}
+
+.note-deadline {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888888;
+}
+
+.note-checkbox {
+    margin-top: 10px;
+}

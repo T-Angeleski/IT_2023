@@ -1,0 +1,23 @@
+﻿@model IEnumerable<NoteVerse.Models.Note>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="@Url.Content("~/Content/PartialNote.css")" rel="stylesheet" />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model) {
+            <div class="col-md-4">
+                @Html.Partial("_Note", item)
+            </div>
+        }
+    </div>
+</div>
+
+
+

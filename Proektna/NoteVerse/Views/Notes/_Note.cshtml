@@ -1,0 +1,21 @@
+﻿@model Note
+
+<div class="note-card">
+    <div class="note-title">@Model.Title</div>
+    <div class="note-content">
+        @Model.Content
+    </div>
+    <div class="note-deadline">
+        Deadline: @Model.Deadline
+    </div>
+    <div class="note-checkbox form-check">
+        <input class="form-check-input" type="checkbox" id="completionCheckbox">
+        <label class="form-check-label" for="completionCheckbox">
+            Completed
+        </label>
+    </div>
+</div>
+
+@section Styles {
+    <link href="~/Content/PartialNote.css" rel="stylesheet" type="text/css" />
+}
