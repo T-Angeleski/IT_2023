@@ -1,23 +1,57 @@
-﻿@model IEnumerable<NoteVerse.Models.Note>
+﻿@model IEnumerable<Note>
 
 @{
     ViewBag.Title = "Index";
 }
 <link href="@Url.Content("~/Content/PartialNote.css")" rel="stylesheet" />
 
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<div class="container">
-    <div class="row">
-        @foreach (var item in Model) {
-            <div class="col-md-4">
-                @Html.Partial("_Note", item)
-            </div>
-        }
-    </div>
-</div>
+<form method="get" action="@Url.Action("Index")"
+      data-noteverse-ajax="true" data-noteverse-target="#notesList">
 
 
+    <input type="search" name="searchTerm" data-noteverse-autocomplete="@Url.Action("Autocomplete")" />
+    <input type="submit" value="Search by note title" />
+</form>
 
+
+@Html.Partial("_Notes", Model)
+
+@section scripts {
+    <script>
+        $(function () {
+            $(".mark-as-complete").on("click", function () {
+                var noteId = $(this).data("noteverse-id");
+                var markAsComplete = $(this)
+
+
+                bootbox.confirm("Mark note as complete?", function (result) {
+                    if (result) {
+                        // send ajax req to mark as complete
+                        $.ajax({
+                            url: "/Notes/MarkAsComplete",
+                            type: "POST",
+                            data: { id: noteId },
+                            success: function (data) {
+                                if (data.success) {
+                                    markAsComplete.hide();
+                                }
+                                window.location.reload();
+                            }
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+}
+
+<style>
+    .ui-helper-hidden-accessible {
+        display: none;
+    }
+</style>

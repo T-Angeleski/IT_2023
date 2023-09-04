@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -13,18 +14,65 @@ namespace NoteVerse.Controllers {
     public class NotesController : Controller {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [HttpPost]
+        public JsonResult MarkAsComplete(int id) {
+            var note = db.Notes.Find(id);
+
+            if (note == null) {
+                return Json(new { success = false, message = "Note not found." });
+            }
+
+            note.IsCompleted = true;
+            db.SaveChanges();
+            return Json(new { success = true, message = "Note marked as complete." }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Autocomplete(string term) {
+
+
+            if (User.IsInRole("Administrator")) {
+                var notes = db.Notes
+                    .Where(n => n.Title.StartsWith(term))
+                    .Take(10)
+                    .Select(n => new {
+                        label = n.Title
+                    });
+                return Json(notes, JsonRequestBehavior.AllowGet);
+
+            } else {
+                var loggedInUser = User.Identity.GetUserId();
+                var notes = db.Notes
+                    .Where(u => u.UserId.Equals(loggedInUser))
+                    .Where(n => n.Title.StartsWith(term))
+                    .Take(10)
+                    .Select(n => new {
+                        label = n.Title
+                    });
+                return Json(notes, JsonRequestBehavior.AllowGet);
+
+            }
+
+        }
+
         // GET: Notes
         [Authorize]
-        public ActionResult Index() {
+        public ActionResult Index(string searchTerm = null) {
             var notes = new List<Note>();
 
             if (User.IsInRole("Administrator")) {
-                notes = db.Notes.ToList();
+                notes = db.Notes
+                    .Where(n => searchTerm == null || n.Title.StartsWith(searchTerm))
+                    .ToList();
             } else {
                 var loggedInUser = User.Identity.GetUserId();
                 notes = db.Notes
                     .Where(u => u.UserId.Equals(loggedInUser))
+                    .Where(n => searchTerm == null || n.Title.StartsWith(searchTerm))
                     .ToList();
+            }
+
+            if (Request.IsAjaxRequest()) {
+                return PartialView("_Notes", notes);
             }
 
             return View(notes);

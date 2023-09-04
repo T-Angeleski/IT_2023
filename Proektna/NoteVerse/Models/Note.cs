@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,8 @@ namespace NoteVerse.Models {
         public bool IsCompleted { get; set; } = false;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Date and Time")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Deadline { get; set; }
 
         public int? GroupId { get; set; }

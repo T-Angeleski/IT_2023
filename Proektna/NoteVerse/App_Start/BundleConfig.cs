@@ -5,6 +5,14 @@ namespace NoteVerse {
     public class BundleConfig {
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles) {
+            bundles.Add(new ScriptBundle("~/bundles/noteverse").Include(
+                    "~/Scripts/jquery-{version}.js",
+                    "~/Scripts/jquery-ui-{version}.js",
+                    "~/Scripts/jquery.validate",
+                    "~/Scripts/bootbox.js",
+                    "~/Scripts/noteverse.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
