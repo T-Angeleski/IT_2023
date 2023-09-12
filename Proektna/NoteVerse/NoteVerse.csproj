@@ -196,6 +196,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddNoteToGroupViewModel.cs" />
     <Compile Include="Models\AddUserToRoleModel.cs" />
     <Compile Include="Models\GroupedNotes.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -361,6 +362,7 @@
     <Content Include="Views\Notes\GroupedNotes.cshtml" />
     <Content Include="Views\Notes\EditGroupedNote.cshtml" />
     <Content Include="Views\Notes\DeleteGroupedNote.cshtml" />
+    <Content Include="Views\Notes\AddNoteToGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

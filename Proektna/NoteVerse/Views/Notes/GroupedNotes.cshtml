@@ -4,36 +4,105 @@
     ViewBag.Title = "Grouped Notes";
 }
 
-<h2>Grouped Notes</h2>
+<style>
+    
+
+    .grouped-notes-container {
+        padding: 20px;
+    }
+
+    .grouped-note-card {
+        margin-bottom: 20px;
+        border: 1px solid #3d4d6c;
+    }
+
+    .grouped-note-title {
+        padding: 10px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .note-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .note-item {
+        padding: 5px 10px;
+        border-bottom: 1px solid #3d4d6c;
+    }
+
+    .note-title {
+        font-weight: bold;
+    }
+
+    .note-content {
+        margin-top: 10px;
+    }
+
+    .note-image {
+        width: 24px;
+        height: 24px;
+        margin-left: 10px;
+    }
+
+    .grouped-note-card {
+        flex: 0 0 calc(33.33% - 20px); /* 3 cards in a row */
+        margin-right: 20px;
+    }
+
+    @@media (max-width: 768px) {
+        .grouped-note-card {
+            flex: 0 0 calc(50% - 20px); /* 2 cards in a row on smaller screens */
+            margin-right: 20px;
+        }
+    }
+</style>
+
 
 <p>
     @Html.ActionLink("Create New", "CreateGroupedNote")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditGroupedNote", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "DeleteGroupedNote", new { id = item.Id }) |
-            @Html.ActionLink("Add note to this group", "AddNoteToGroup", new { id = item.Id })
-        </td>
-    </tr>
-}
+<div class="container grouped-notes-container">
+    <h2 class="text-center mb-4">Grouped Notes</h2>
 
-</table>
+    <div class="d-flex flex-wrap">
+        @foreach (var item in Model) {
+            <div class="card grouped-note-card">
+
+                <div class="card-header grouped-note-title">
+                    @item.Title
+                    <br />
+
+                    @Html.ActionLink("Edit", "EditGroupedNote", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeleteGroupedNote", new { id = item.Id }) |
+                    @Html.ActionLink("Add note to this group", "AddNoteToGroup", new { id = item.Id })
+                </div>
+
+                <ul class="note-list">
+                    @foreach (var note in item.Notes) {
+                        <li class="note-item">
+                            <span class="note-title">@note.Title</span>
+                            <p class="note-content">
+                                @note.Content
+                                <span>
+                                    @if (note.IsCompleted) {
+                                        <img src="~/Content/Images/checkbox_checked.png" alt="Status" class="note-image" />
+                                    } else {
+                                        <img src="~/Content/Images/checkbox_unchecked.png" alt="Status" class="note-image" />
+                                    }
+                                </span>
+                            </p>
+
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        }
+    </div>
+
+</div>
+
+

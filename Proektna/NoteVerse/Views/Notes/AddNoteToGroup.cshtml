@@ -1,0 +1,18 @@
+﻿@model AddNoteToGroupViewModel
+@{
+    ViewBag.Title = "Add Note To Group";
+}
+
+<h2>Add note to this group</h2>
+
+@using (Html.BeginForm("AddNoteToGroup", "Notes", FormMethod.Post)) {
+    @Html.HiddenFor(m => m.groupedNoteId)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.noteId, "Select a Note:")
+        @Html.DropDownListFor(m => m.noteId, Model.Notes, "Select a note", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add note</button>
+}
+

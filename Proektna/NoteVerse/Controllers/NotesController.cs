@@ -55,6 +55,40 @@ namespace NoteVerse.Controllers {
 
         }
 
+        public ActionResult AddNoteToGroup(int id) {
+            var groupedNote = db.GroupedNotes.Find(id);
+
+            if (groupedNote == null) {
+                return HttpNotFound();
+            }
+
+            var notes = db.Notes.ToList();
+            var notesSelectList = new SelectList(notes, "Id", "Title");
+
+            var model = new AddNoteToGroupViewModel {
+                groupedNoteId = id,
+                Notes = notesSelectList
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddNoteToGroup(AddNoteToGroupViewModel model) {
+            var groupNote = db.GroupedNotes.SingleOrDefault(n => n.Id == model.groupedNoteId);
+            var note = db.Notes.SingleOrDefault(n => n.Id == model.noteId);
+
+            if(note != null) {
+                groupNote.Notes.Add(note);
+                note.GroupId = groupNote.Id;
+                note.ParentGroup = groupNote;
+                db.SaveChanges();
+                return RedirectToAction("GroupedNotes", db.GroupedNotes.ToList());
+            }
+
+            return View(model);
+        }
+
         // GET: Notes
         [Authorize]
         public ActionResult Index(string searchTerm = null) {
