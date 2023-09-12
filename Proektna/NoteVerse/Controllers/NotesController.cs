@@ -7,6 +7,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using NoteVerse.Models;
 
@@ -78,26 +79,12 @@ namespace NoteVerse.Controllers {
             return View(notes);
         }
 
-        // GET: Notes/Details/5
-        public ActionResult Details(int? id) {
-            if (id == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Note note = db.Notes.Find(id);
-            if (note == null) {
-                return HttpNotFound();
-            }
-            return View(note);
-        }
 
-        // GET: Notes/Create
         public ActionResult Create() {
             return View();
         }
 
-        // POST: Notes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Content,IsCompleted,CreatedAt,Deadline,GroupId,UserId")] Note note) {
@@ -115,7 +102,38 @@ namespace NoteVerse.Controllers {
             return View(note);
         }
 
-        // GET: Notes/Edit/5
+        public ActionResult CreateGroupedNote() {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateGroupedNote(GroupedNotes note) {
+            if (ModelState.IsValid) {
+                note.UserId = User.Identity.GetUserId();
+                db.GroupedNotes.Add(note);
+                db.SaveChanges();
+                return RedirectToAction("GroupedNotes");
+            }
+            return View(note);
+        }
+
+        public ActionResult GroupedNotes() {
+            var notes = new List<GroupedNotes>();
+
+            if (User.IsInRole("Administrator")) {
+                notes = db.GroupedNotes
+                    .ToList();
+            } else {
+                var loggedInUser = User.Identity.GetUserId();
+                notes = db.GroupedNotes
+                    .Where(u => u.UserId.Equals(loggedInUser))
+                    .ToList();
+            }
+
+            return View(notes);
+        }
+
         public ActionResult Edit(int? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -127,9 +145,7 @@ namespace NoteVerse.Controllers {
             return View(note);
         }
 
-        // POST: Notes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Content,IsCompleted,CreatedAt,Deadline,GroupId,UserId")] Note note) {
@@ -141,7 +157,6 @@ namespace NoteVerse.Controllers {
             return View(note);
         }
 
-        // GET: Notes/Delete/5
         public ActionResult Delete(int? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -153,7 +168,6 @@ namespace NoteVerse.Controllers {
             return View(note);
         }
 
-        // POST: Notes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id) {
@@ -161,6 +175,48 @@ namespace NoteVerse.Controllers {
             db.Notes.Remove(note);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult EditGroupedNote(int? id) {
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GroupedNotes note = db.GroupedNotes.Find(id);
+            if (note == null) {
+                return HttpNotFound();
+            }
+            return View(note);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditGroupedNote(GroupedNotes note) {
+            if (ModelState.IsValid) {
+                db.Entry(note).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("GroupedNotes");
+            }
+            return View(note);
+        }
+
+        public ActionResult DeleteGroupedNote(int? id) {
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GroupedNotes note = db.GroupedNotes.Find(id);
+            if (note == null) {
+                return HttpNotFound();
+            }
+            return View(note);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteGroupedNote(int id) {
+            GroupedNotes note = db.GroupedNotes.Find(id);
+            db.GroupedNotes.Remove(note);
+            db.SaveChanges();
+            return RedirectToAction("GroupedNotes");
         }
 
         protected override void Dispose(bool disposing) {

@@ -16,13 +16,14 @@ namespace NoteVerse.Models {
         public string Content { get; set; }
         public bool IsCompleted { get; set; } = false;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+
         [DataType(DataType.Date)]
         [DisplayName("Date and Time")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Deadline { get; set; }
 
         public int? GroupId { get; set; }
-        public GroupedNotes ParentGroup { get; set; }
+        public virtual GroupedNotes ParentGroup { get; set; }
 
         // User
         public string UserId { get; set; }

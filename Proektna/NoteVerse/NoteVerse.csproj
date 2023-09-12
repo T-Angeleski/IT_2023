@@ -190,6 +190,10 @@
     <Compile Include="Migrations\202309021345393_addNullableGroupId.designer.cs">
       <DependentUpon>202309021345393_addNullableGroupId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202309111635059_changetitletostring.cs" />
+    <Compile Include="Migrations\202309111635059_changetitletostring.designer.cs">
+      <DependentUpon>202309111635059_changetitletostring.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddUserToRoleModel.cs" />
@@ -348,12 +352,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Notes\Create.cshtml" />
     <Content Include="Views\Notes\Delete.cshtml" />
-    <Content Include="Views\Notes\Details.cshtml" />
     <Content Include="Views\Notes\Edit.cshtml" />
     <Content Include="Views\Notes\Index.cshtml" />
     <Content Include="Views\Account\AddUserToRole.cshtml" />
     <Content Include="Views\Notes\_Note.cshtml" />
     <Content Include="Views\Notes\_Notes.cshtml" />
+    <Content Include="Views\Notes\CreateGroupedNote.cshtml" />
+    <Content Include="Views\Notes\GroupedNotes.cshtml" />
+    <Content Include="Views\Notes\EditGroupedNote.cshtml" />
+    <Content Include="Views\Notes\DeleteGroupedNote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -373,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202309021345393_addNullableGroupId.resx">
       <DependentUpon>202309021345393_addNullableGroupId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309111635059_changetitletostring.resx">
+      <DependentUpon>202309111635059_changetitletostring.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
