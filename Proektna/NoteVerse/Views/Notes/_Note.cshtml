@@ -1,28 +1,52 @@
-﻿@model Note 
+﻿@model Note
 
-<div class="note-card">
 
-    <div class="note-title">
-        @Model.Title
+@{
+    var differenceTimes = Model.Deadline.Subtract(DateTime.Now); // get time difference
+    int diffHours = differenceTimes.Days * 24 + differenceTimes.Hours; // get total hours until deadline
+    bool isCloseToDeadline = diffHours < 24 && diffHours >= 0;
+    bool isPastDeadline = diffHours < 0;
+}
+
+<div class="note-card" style="background: white;">
+
+    <div class="note-title" style="font-size: 30px;">
+
+        @if (Model.IsCompleted) {
+            <span style="color: lightgreen">@Model.Title ✓ </span>
+        } else {
+            <span>@Model.Title</span>
+        }
+
     </div>
 
-    <div class="note-content">
+    <div class="note-content" style="font-size: 20px;">
         @Model.Content
     </div>
 
     <div class="note-deadline">
-        Deadline: @Model.Deadline.ToString("f")
+        <span style="font-weight: bold">Deadline: </span>
+        @if (isCloseToDeadline) {
+            <span style="background-color: lightyellow">@Model.Deadline.ToString("ddd d MMM HH:mm")</span>
+        } else if (isPastDeadline) {
+            <span style="background-color: lightcoral">@Model.Deadline.ToString("ddd d MMM HH:mm")</span>
+        } else {
+            <span>
+                @Model.Deadline.ToString("ddd d MMM HH:mm")
+            </span>
+        }
     </div>
+
 
     <div class="row">
 
         <div class="d-flex justify-content-end align-content-baseline">
-            
+
             @if (Model.IsCompleted) {
-                <img src="~/Content/Images/checkbox_checked.png" 
-                     style="margin:10px" alt="Mark as unfinished" data-noteverse-id="@Model.Id" class="completed"/>
+                <img src="~/Content/Images/checkbox_checked.png"
+                     style="margin:10px" alt="Mark as unfinished" data-noteverse-id="@Model.Id" class="completed" />
             } else {
-                <img src="~/Content/Images/checkbox_unchecked.png" 
+                <img src="~/Content/Images/checkbox_unchecked.png"
                      style="cursor: pointer; margin:10px" alt="Mark as completed" data-noteverse-id="@Model.Id" class="mark-as-complete" />
             }
 
@@ -34,9 +58,7 @@
                 <img src="~/Content/Images/recycle-bin.png" style="width:32px" />
             </a>
         </div>
-        <div class="d-flex justify-content-end">
 
-        </div>
     </div>
 </div>
 

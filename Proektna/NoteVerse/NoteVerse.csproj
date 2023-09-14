@@ -222,10 +222,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Images\bg_navbar.png" />
+    <Content Include="Content\Images\bg_navbar_blurred.png" />
+    <Content Include="Content\Images\bg_stars.jpg" />
+    <Content Include="Content\Images\bg_stars_blurred.jpg" />
     <Content Include="Content\Images\checkbox_checked.png" />
     <Content Include="Content\Images\checkbox_unchecked.png" />
     <Content Include="Content\Images\options_icon.png" />
     <Content Include="Content\Images\recycle-bin.png" />
+    <Content Include="Content\layoutstyles.css" />
     <Content Include="Content\PartialNote.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -328,8 +333,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />

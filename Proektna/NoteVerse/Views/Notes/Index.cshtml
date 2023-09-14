@@ -6,20 +6,40 @@
 <link href="@Url.Content("~/Content/PartialNote.css")" rel="stylesheet" />
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-<form method="get" action="@Url.Action("Index")"
-      data-noteverse-ajax="true" data-noteverse-target="#notesList">
 
 
-    <input type="search" name="searchTerm" data-noteverse-autocomplete="@Url.Action("Autocomplete")" />
-    <input type="submit" value="Search by note title" />
-</form>
+<style>
+    body {
+        background-image: url('../../content/images/bg_stars_blurred.jpg');
+    }
 
+    .create-note {
+        text-decoration: none;
+        color: black;
+        font-size: 30px;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <span>
+            @Html.ActionLink("New note", "Create", "Notes", new { @class = "create-note" })
+        </span>
+    </div>
+
+    <div>
+        <form method="get" action="@Url.Action("Index")"
+              data-noteverse-ajax="true" data-noteverse-target="#notesList" class="justify-content-start">
+
+
+            <input type="search" name="searchTerm" data-noteverse-autocomplete="@Url.Action("Autocomplete")" />
+            <input type="submit" value="Search by note title" />
+        </form>
+    </div>
+</div>
 
 @Html.Partial("_Notes", Model)
+
 
 @section scripts {
     <script>

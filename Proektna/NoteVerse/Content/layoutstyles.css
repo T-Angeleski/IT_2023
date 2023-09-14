@@ -1,0 +1,31 @@
+﻿* {
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.note {
+    color: #ffdf2b;
+    font-size: 42px;
+}
+
+
+.verse {
+    color: black;
+    font-size: 42px;
+    /* Generated using owumaro text-stroke generator */
+    text-shadow: rgb(255, 223, 43) 1px 0px 0px, rgb(255, 223, 43) 0.540302px 0.841471px 0px, rgb(255, 223, 43) -0.416147px 0.909297px 0px, rgb(255, 223, 43) -0.989993px 0.14112px 0px, rgb(255, 223, 43) -0.653644px -0.756803px 0px, rgb(255, 223, 43) 0.283662px -0.958924px 0px, rgb(255, 223, 43) 0.96017px -0.279416px 0px;
+}
+
+
+
+.navbar-link {
+    padding: 10px;
+    color: #ffdf2b;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+    .navbar-link:hover {
+        color: black;
+        text-shadow: rgb(255, 223, 43) 1px 0px 0px, rgb(255, 223, 43) 0.540302px 0.841471px 0px, rgb(255, 223, 43) -0.416147px 0.909297px 0px, rgb(255, 223, 43) -0.989993px 0.14112px 0px, rgb(255, 223, 43) -0.653644px -0.756803px 0px, rgb(255, 223, 43) 0.283662px -0.958924px 0px, rgb(255, 223, 43) 0.96017px -0.279416px 0px;
+    }

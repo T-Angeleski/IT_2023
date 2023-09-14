@@ -5,7 +5,9 @@
 }
 
 <style>
-    
+    body {
+        background-image: url('../../content/images/bg_stars_blurred.jpg');
+    }
 
     .grouped-notes-container {
         padding: 20px;
@@ -29,7 +31,7 @@
 
     .note-item {
         padding: 5px 10px;
-        border-bottom: 1px solid #3d4d6c;
+        /*border-bottom: 1px solid #3d4d6c;*/
     }
 
     .note-title {
@@ -77,7 +79,7 @@
 
                     @Html.ActionLink("Edit", "EditGroupedNote", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "DeleteGroupedNote", new { id = item.Id }) |
-                    @Html.ActionLink("Add note to this group", "AddNoteToGroup", new { id = item.Id })
+                    @Html.ActionLink("Add note to group", "AddNoteToGroup", new { id = item.Id })
                 </div>
 
                 <ul class="note-list">

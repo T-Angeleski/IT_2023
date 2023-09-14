@@ -29,6 +29,7 @@ namespace NoteVerse {
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/layoutstyles.css",
                       "~/Content/site.css"));
         }
     }

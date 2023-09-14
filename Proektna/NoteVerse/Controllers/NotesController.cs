@@ -113,7 +113,7 @@ namespace NoteVerse.Controllers {
             return View(notes);
         }
 
-
+        [Authorize]
         public ActionResult Create() {
             return View();
         }
@@ -136,6 +136,7 @@ namespace NoteVerse.Controllers {
             return View(note);
         }
 
+        [Authorize]
         public ActionResult CreateGroupedNote() {
             return View();
         }
@@ -152,6 +153,7 @@ namespace NoteVerse.Controllers {
             return View(note);
         }
 
+        [Authorize]
         public ActionResult GroupedNotes() {
             var notes = new List<GroupedNotes>();
 
@@ -168,6 +170,7 @@ namespace NoteVerse.Controllers {
             return View(notes);
         }
 
+        [Authorize]
         public ActionResult Edit(int? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -191,6 +194,7 @@ namespace NoteVerse.Controllers {
             return View(note);
         }
 
+        [Authorize]
         public ActionResult Delete(int? id) {
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
