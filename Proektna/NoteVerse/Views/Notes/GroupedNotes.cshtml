@@ -59,15 +59,21 @@
             margin-right: 20px;
         }
     }
+
+    .create-note {
+        text-decoration: none;
+        color: black;
+        font-size: 25px;
+    }
 </style>
 
 
 <p>
-    @Html.ActionLink("Create New", "CreateGroupedNote")
+    @Html.ActionLink("New note group", "CreateGroupedNote", "Notes", new { @class = "create-note" })
 </p>
 
 <div class="container grouped-notes-container">
-    <h2 class="text-center mb-4">Grouped Notes</h2>
+    @*<h2 class="text-center mb-4">Grouped Notes</h2>*@
 
     <div class="d-flex flex-wrap">
         @foreach (var item in Model) {
@@ -76,10 +82,14 @@
                 <div class="card-header grouped-note-title">
                     @item.Title
                     <br />
+                    <div style="margin-top: 20px;">
+                        @Html.ActionLink("Add note", "AddNoteToGroup", new { id = item.Id }) |
+                        @Html.ActionLink("Edit", "EditGroupedNote", new { id = item.Id }) |
+                        <a href="/Notes/DeleteGroupedNote/@item.Id" style="margin:10px; text-decoration: none;">
+                            <img src="~/Content/Images/recycle-bin.png" style="width:25px" />
+                        </a>
+                    </div>
 
-                    @Html.ActionLink("Edit", "EditGroupedNote", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "DeleteGroupedNote", new { id = item.Id }) |
-                    @Html.ActionLink("Add note to group", "AddNoteToGroup", new { id = item.Id })
                 </div>
 
                 <ul class="note-list">

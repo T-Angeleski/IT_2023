@@ -23,7 +23,7 @@
 <div class="d-flex justify-content-between align-items-center">
     <div>
         <span>
-            @Html.ActionLink("New note", "Create", "Notes", new { @class = "create-note" })
+            @Html.ActionLink("New note 📝", "Create", "Notes", new { @class = "create-note" })
         </span>
     </div>
 
@@ -32,8 +32,8 @@
               data-noteverse-ajax="true" data-noteverse-target="#notesList" class="justify-content-start">
 
 
-            <input type="search" name="searchTerm" data-noteverse-autocomplete="@Url.Action("Autocomplete")" />
-            <input type="submit" value="Search by note title" />
+            <input type="search" name="searchTerm" data-noteverse-autocomplete="@Url.Action("Autocomplete")" style="border-radius: 9%; width: 250px;"/>
+            <input type="submit" value="Search by note title" style="background-color: #113291; color: #f8f9f4; border-radius: 9%;"/>
         </form>
     </div>
 </div>

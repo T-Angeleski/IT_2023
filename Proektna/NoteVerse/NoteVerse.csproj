@@ -228,6 +228,7 @@
     <Content Include="Content\Images\bg_stars_blurred.jpg" />
     <Content Include="Content\Images\checkbox_checked.png" />
     <Content Include="Content\Images\checkbox_unchecked.png" />
+    <Content Include="Content\Images\notes_example_transparent.png" />
     <Content Include="Content\Images\options_icon.png" />
     <Content Include="Content\Images\recycle-bin.png" />
     <Content Include="Content\layoutstyles.css" />

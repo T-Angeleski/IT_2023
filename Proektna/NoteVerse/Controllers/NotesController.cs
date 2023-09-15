@@ -61,8 +61,11 @@ namespace NoteVerse.Controllers {
             if (groupedNote == null) {
                 return HttpNotFound();
             }
+            var userId = User.Identity.GetUserId();
+            var notes = db.Notes
+                        .Where(n => n.UserId == userId)
+                        .ToList();
 
-            var notes = db.Notes.ToList();
             var notesSelectList = new SelectList(notes, "Id", "Title");
 
             var model = new AddNoteToGroupViewModel {

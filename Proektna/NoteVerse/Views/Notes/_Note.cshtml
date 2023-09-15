@@ -12,11 +12,11 @@
 
     <div class="note-title" style="font-size: 30px;">
 
-        @if (Model.IsCompleted) {
-            <span style="color: lightgreen">@Model.Title ✓ </span>
-        } else {
-            <span>@Model.Title</span>
-        }
+        <span>
+            @Model.Title 
+            @if (Model.IsCompleted) {<span style="color: #b0ffc5;">✓</span>}
+            @if (isCloseToDeadline) {<span>🕘</span>}
+        </span>
 
     </div>
 

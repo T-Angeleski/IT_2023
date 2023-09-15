@@ -6,25 +6,27 @@
     body {
         background-image: url('../../content/images/bg_stars_blurred.jpg');
     }
+
+    .lead {
+        font-size: 40px;
+        margin: 20px;
+    }
     </style>
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">Home page of NoteVerse</h1>
-        <p class="lead">Placeholder text.</p>
-    </section>
+  
 
     <div class="row">
-        <section class="col-md-6">
-            Some text here
-        </section>
-        <section class="col-md-6">
-            Some more text here |
+
+        <section class="col-md-7">
+            <p class="lead">Welcome to my note-taking app with a cosmic touch. <br /> Capture, organize, and explore your thoughts among the stars.</p>
+
             @if (User.IsInRole("Administrator")) {
                 @Html.ActionLink("Add user to a role", "AddUserToRole", "Account")
             }
         </section>
-
-
+        <section class="col-md-4">
+            <img src="~/Content/Images/notes_example_transparent.png" style="opacity: 80%;"/>
+        </section>
     </div>
 </main>
